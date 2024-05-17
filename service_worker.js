@@ -1,32 +1,34 @@
-// キャッシュファイルの指定
-var CACHE_NAME = 'pwa-sample-caches';
-var urlsToCache = [
-    '/poster-keisuke.github.io/',
-    '/poster-keisuke.github.io/index.html',
-    '/poster-keisuke.github.io/manifest.json',
-    '/poster-keisuke.github.io/images/icon.jpg'
-];
-
-// インストール処理
+// Service Worker registration
 self.addEventListener('install', function(event) {
     event.waitUntil(
-        caches.open(CACHE_NAME).then(function(cache) {
-            return cache.addAll(urlsToCache);
+        caches.open('my-cache').then(function(cache) {
+            return cache.addAll([
+                // Add URLs of your site assets to cache for offline access
+                '/',
+                '/index.html',
+                '/manifest.json',
+                '/icon.png',
+                // Add more URLs as needed
+            ]);
         })
     );
 });
 
-// リソースフェッチ時のキャッシュロード処理
-self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        caches.match(event.request).then(function(response) {
-            return response || fetch(event.request).then(function(response) {
-                // キャッシュに新しいレスポンスを追加する
-                return caches.open(CACHE_NAME).then(function(cache) {
-                    cache.put(event.request, response.clone());
-                    return response;
-                });
-            });
-        })
+// Service Worker activation
+self.addEventListener('activate', function(event) {
+    // Service Worker activated successfully
+});
+
+// Listen for push notifications
+self.addEventListener('push', function(event) {
+    const title = 'Push Notification';
+    const options = {
+        body: event.data.text(),
+        icon: '/icon.png',
+        badge: '/icon.png'
+    };
+
+    event.waitUntil(
+        self.registration.showNotification(title, options)
     );
 });
