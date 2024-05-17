@@ -8,18 +8,42 @@
     <title>PWA Sample</title>
     <script src="app.js"></script>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
-      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
-      notifyButton: {
-        enable: true,
-      },
-    });
-  });
-</script>
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.init({
+                appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
+                safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
+                notifyButton: {
+                    enable: true,
+                },
+            });
+            OneSignal.on('notificationDisplay', function(event) {
+                // 通知数を更新して表示する
+                updateNotificationCount(event.notification);
+            });
+            function updateNotificationCount(notification) {
+                // カウントを取得し、アイコンに表示する
+                var notificationCount = parseInt(localStorage.getItem('notificationCount')) || 0;
+                notificationCount++;
+                localStorage.setItem('notificationCount', notificationCount);
+                updateBadge(notificationCount);
+            }
+            function updateBadge(count) {
+                // アイコンに通知数を表示する
+                if ('setAppBadge' in navigator && typeof navigator.setAppBadge === 'function') {
+                    navigator.setAppBadge(count);
+                } else {
+                    document.title = (count > 0) ? `(${count}) PWA Sample` : 'PWA Sample';
+                }
+            }
+            // PWAが開かれた時に通知数をリセットする
+            window.addEventListener('appinstalled', function () {
+                localStorage.removeItem('notificationCount');
+                updateBadge(0);
+            });
+        });
+    </script>
 </head>
 <body>
     <input type="button" value="おみくじを引く！" onclick="omikuji();" id="playBtn">
