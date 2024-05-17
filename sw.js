@@ -21,3 +21,15 @@ self.addEventListener('fetch', function(event) {
         })
     );
 });
+
+self.addEventListener('push', function(event) {
+  const options = {
+    body: event.data.text(),
+    icon: 'images/icon-512.png',
+    badge: 'images/badge.png' // バッジの画像を指定
+  };
+
+  event.waitUntil(
+    self.registration.showNotification('プッシュ通知', options)
+  );
+});
