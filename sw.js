@@ -3,7 +3,7 @@ var urlsToCache = [
     'tabasann.github.io',
     'tabasann.github.io/app.js',
 ];
-
+setBadge();
 self.addEventListener('install', function(event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(function(cache) {
