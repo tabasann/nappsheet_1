@@ -1,40 +1,27 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Count to 3</title>
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <script src="/assets/js/script.js" defer></script>
-  <!-- OneSignal スクリプト -->
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
-      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
-      notifyButton: {
-        enable: true,
-      },
-    });
-  });
-</script>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/icon-512.png">
+    <title>PWA Sample</title>
+    <script src="app.js"></script>
 </head>
-
-  <body>
-    <main>
-      <p class="text">
-        ボタンを押すとスタート！<br />3秒ピッタリでもう一度ボタンを押してね！
-      </p>
-
-      <div id="buttonWrap" class="buttonWrap">
-        <button id="start" type="button" class="button -start">スタート</button>
-        <button id="stop" type="button" class="button -stop">ストップ</button>
-      </div>
-
-      <p id="result" class="text -result"></p>
-    </main>
-  </body>
+<body>
+    <input type="button" value="おみくじを引く！" onclick="omikuji();" id="playBtn">
+    <div>
+        <div id="msgHeading" style="opacity: 0;">おみくじの結果は........</div>
+        <div id="msg1"></div>
+        <div id="msg2"></div>
+    </div>
+    <input type="button" value="リセット！" id="resetBtn" onclick="reset();" disabled="disabled">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker.register('sw.js');
+            });
+        }
+    </script>
+</body>
 </html>
