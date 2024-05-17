@@ -22,14 +22,3 @@ self.addEventListener('fetch', function(event) {
     );
 });
 
-self.addEventListener('push', function(event) {
-  const options = {
-    body: event.data.text(),
-    badge: 5 // 数字を指定
-  };
-
-  event.waitUntil(
-    self.registration.showNotification('プッシュ通知', options)
-  );
-});
-
