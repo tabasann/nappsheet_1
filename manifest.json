@@ -1,6 +1,6 @@
 {
     "short_name": "PWA",
-    "name": "tPWA sample app",
+    "name": "PWA sample app",
     "display": "standalone",
     "start_url": "index.html",
     "icons": [
@@ -11,4 +11,3 @@
         }
     ]
 }
-
