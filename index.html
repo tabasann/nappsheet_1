@@ -20,7 +20,13 @@
     });
   });
 </script>
-    <script src="sw.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker.register('sw.js');
+            });
+        }
+    </script>
 </head>
 <body>
     <input type="button" value="おみくじを引く！" onclick="omikuji();" id="playBtn">
@@ -30,12 +36,6 @@
         <div id="msg2"></div>
     </div>
     <input type="button" value="リセット！" id="resetBtn" onclick="reset();" disabled="disabled">
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener("load", function() {
-                navigator.serviceWorker.register('sw.js');
-            });
-        }
-    </script>
+
 </body>
 </html>
