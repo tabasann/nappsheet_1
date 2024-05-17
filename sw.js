@@ -5,20 +5,47 @@ var urlsToCache = [
 ];
 
 self.addEventListener('install', function(event) {
-    event.waitUntil(caches
-        .open(CACHE_NAME)
-        .then(function(cache) {
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(function(cache) {
             return cache.addAll(urlsToCache);
         })
     );
 });
 
 self.addEventListener('fetch', function(event) {
-    event.respondWith(caches
-        .match(event.request)
-        .then(function(response) {
+    event.respondWith(
+        caches.match(event.request).then(function(response) {
             return response ? response : fetch(event.request);
         })
     );
 });
 
+self.addEventListener('push', function(event) {
+    event.waitUntil(
+        self.registration.showNotification('Notification Title', {
+            body: 'Notification Body',
+            icon: 'path/to/notification-icon.png'
+        })
+    );
+    setBadge();
+});
+
+self.addEventListener('activate', function(event) {
+    clearBadge();
+});
+
+function setBadge() {
+    if ('setAppBadge' in navigator) {
+        navigator.setAppBadge(1);
+    } else {
+        console.log('setAppBadge is not supported.');
+    }
+}
+
+function clearBadge() {
+    if ('clearAppBadge' in navigator) {
+        navigator.clearAppBadge();
+    } else {
+        console.log('clearAppBadge is not supported.');
+    }
+}
