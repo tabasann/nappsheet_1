@@ -21,12 +21,6 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('push', function(event) {
-    event.waitUntil(
-        self.registration.showNotification('Notification Title', {
-            body: 'Notification Body',
-            icon: 'path/to/notification-icon.png'
-        })
-    );
     setBadge();
 });
 
