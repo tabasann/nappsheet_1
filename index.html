@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My App</title>
-  <!-- PWA Manifest リンク -->
-  <link rel="manifest" href="/manifest.json">
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Count to 3</title>
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <script src="/assets/js/script.js" defer></script>
   <!-- OneSignal スクリプト -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
@@ -21,24 +22,19 @@
   });
 </script>
 </head>
-<body>
-  <!-- コンテンツの追加 -->
-  <h1>Welcome to My App</h1>
-  <p>This is a sample content.</p>
 
-  <!-- その他のコンテンツ -->
+  <body>
+    <main>
+      <p class="text">
+        ボタンを押すとスタート！<br />3秒ピッタリでもう一度ボタンを押してね！
+      </p>
 
-  <!-- サービスワーカーの登録 -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
-          console.log('ServiceWorker registration successful with scope: ', registration.scope);
-        }, function(err) {
-          console.log('ServiceWorker registration failed: ', err);
-        });
-      });
-    }
-  </script>
-</body>
+      <div id="buttonWrap" class="buttonWrap">
+        <button id="start" type="button" class="button -start">スタート</button>
+        <button id="stop" type="button" class="button -stop">ストップ</button>
+      </div>
+
+      <p id="result" class="text -result"></p>
+    </main>
+  </body>
 </html>
