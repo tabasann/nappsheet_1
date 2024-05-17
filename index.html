@@ -1,28 +1,12 @@
-<!doctype html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="manifest.json">
+    //<link rel="apple-touch-icon" href="images/icon-512.png">
     <title>PWA Sample</title>
     <script src="app.js"></script>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <style>
-        .notification-badge {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            width: 20px;
-            height: 20px;
-            background-color: red;
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-    </style>
     <script>
         window.OneSignalDeferred = window.OneSignalDeferred || [];
         OneSignalDeferred.push(function(OneSignal) {
@@ -49,12 +33,7 @@
                 if ('setAppBadge' in navigator && typeof navigator.setAppBadge === 'function') {
                     navigator.setAppBadge(count);
                 } else {
-                    document.querySelector('.notification-badge').innerText = count;
-                    if (count > 0) {
-                        document.querySelector('.notification-badge').style.display = "block";
-                    } else {
-                        document.querySelector('.notification-badge').style.display = "none";
-                    }
+                    document.title = (count > 0) ? `(${count}) PWA Sample` : 'PWA Sample';
                 }
             }
             // PWAが開かれた時に通知数をリセットする
@@ -73,9 +52,6 @@
         <div id="msg2"></div>
     </div>
     <input type="button" value="リセット！" id="resetBtn" onclick="reset();" disabled="disabled">
-    <!-- 通知数を表示するバッジ -->
-    <div class="notification-badge"></div>
-    
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener("load", function() {
