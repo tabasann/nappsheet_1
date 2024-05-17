@@ -18,14 +18,9 @@
         enable: true,
       },
     });
-  });
-</script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener("load", function() {
+  });</script>
+        <script>
                 navigator.serviceWorker.register('sw.js');
-            });
-        }
     </script>
 </head>
 <body>
@@ -36,6 +31,13 @@
         <div id="msg2"></div>
     </div>
     <input type="button" value="リセット！" id="resetBtn" onclick="reset();" disabled="disabled">
-
+</script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker.register('sw.js');
+            });
+        }
+    </script>
 </body>
 </html>
