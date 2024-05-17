@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My PWA Site</title>
-    <!-- Add manifest link -->
-    <link rel="manifest" href="/manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My App</title>
+  <!-- PWA Manifest リンク -->
+  <link rel="manifest" href="/manifest.json">
+  <!-- OneSignal スクリプト -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -21,15 +22,23 @@
 </script>
 </head>
 <body>
-    <h1>Welcome to My PWA Site</h1>
-    <!-- 1Button to subscribe to push notifications -->
-    <button id="subscribeButton">Subscribe to Push Notifications</button>
+  <!-- コンテンツの追加 -->
+  <h1>Welcome to My App</h1>
+  <p>This is a sample content.</p>
 
-    <!-- Your other HTML content goes here -->
+  <!-- その他のコンテンツ -->
 
-    <!-- Add OneSignal SDK -->
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" async></script>
-    <!-- Add your custom JavaScript -->
-    <script src="script.js"></script>
+  <!-- サービスワーカーの登録 -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/service-worker.js').then(function(registration) {
+          console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+          console.log('ServiceWorker registration failed: ', err);
+        });
+      });
+    }
+  </script>
 </body>
 </html>
