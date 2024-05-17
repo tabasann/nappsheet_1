@@ -6,25 +6,30 @@
     <title>My PWA Site</title>
     <!-- Add manifest link -->
     <link rel="manifest" href="/manifest.json">
-    <script src="https://cdn.onesignal.com/sdks/web/v5.1.0/OneSignalSDK.js" async=""></script>
+    <script src="https://cdn.onesignal.com/sdks/web/v5.1.0/OneSignalSDK.js" async></script>
     <script>
-        window.OneSignal = window.OneSignal || [];
-        OneSignal.push(function() {
-            OneSignal.init({
-                appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-                safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
-                notifyButton: {
-                    enable: true,
-                },
+        // OneSignalのSDKが読み込まれた後に初期化を行うための関数
+        function initializeOneSignal() {
+            // OneSignalの初期化
+            window.OneSignal = window.OneSignal || [];
+            OneSignal.push(function() {
+                // OneSignalの設定を行う
+                OneSignal.init({
+                    appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
+                    safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
+                    notifyButton: {
+                        enable: true, // プッシュ通知の購読ボタンを有効にする
+                    },
+                });
             });
-        });
+        }
+
+        // ページの読み込みが完了した時にOneSignalを初期化する
+        window.addEventListener('load', initializeOneSignal);
     </script>
 </head>
 <body>
     <h1>Welcome to My PWA Site</h1>
-    <!-- Button to subscribe to push notifications -->
-    <button id="subscribeButton">Subscribe to Push Notifications</button>
-
     <!-- Your other HTML content goes here -->
 
     <!-- Add your custom JavaScript -->
