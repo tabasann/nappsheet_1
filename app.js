@@ -4,6 +4,23 @@ function omikuji() {
   let random1;
   let random2;
 
+
+window.addEventListener('load', function() {
+  // ページが読み込まれた際にバッジをクリア
+  clearBadge();
+});
+
+// バッジをクリアする関数
+function clearBadge() {
+  if ('serviceWorker' in navigator && 'clearBadge' in navigator.serviceWorker) {
+    navigator.serviceWorker.ready.then(function(registration) {
+      registration.clearBadge();
+    });
+  }
+}
+
+
+  
   random1 = Math.floor(Math.random() * 5);
   console.log(random1);
 
