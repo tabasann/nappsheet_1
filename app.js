@@ -1,20 +1,4 @@
 // app.js
-
-window.addEventListener('load', function() {
-  // ページが読み込まれた際にバッジをクリア
-  clearBadge();
-});
-
-// バッジをクリアする関数
-function clearBadge() {
-  if ('serviceWorker' in navigator && 'clearBadge' in navigator.serviceWorker) {
-    navigator.serviceWorker.ready.then(function(registration) {
-      registration.clearBadge();
-    });
-  }
-}
-
-
 function omikuji() {
   let msg1;
   let msg2;
