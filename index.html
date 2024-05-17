@@ -19,25 +19,25 @@
                 },
             });
             OneSignal.on('notificationDisplay', function(event) {
-                // Update and display the notification count
+                // 通知数を更新して表示する
                 updateNotificationCount(event.notification);
             });
             function updateNotificationCount(notification) {
-                // Get the count and display it in the icon badge
+                // カウントを取得し、アイコンに表示する
                 var notificationCount = parseInt(localStorage.getItem('notificationCount')) || 0;
                 notificationCount++;
                 localStorage.setItem('notificationCount', notificationCount);
                 updateBadge(notificationCount);
             }
             function updateBadge(count) {
-                // Display the notification count in the icon badge
+                // アイコンに通知数を表示する
                 if ('setAppBadge' in navigator && typeof navigator.setAppBadge === 'function') {
                     navigator.setAppBadge(count);
                 } else {
                     document.title = (count > 0) ? `(${count}) PWA Sample` : 'PWA Sample';
                 }
             }
-            // Reset the notification count when PWA is opened
+            // PWAが開かれた時に通知数をリセットする
             window.addEventListener('appinstalled', function () {
                 localStorage.removeItem('notificationCount');
                 updateBadge(0);
