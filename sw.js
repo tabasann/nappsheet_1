@@ -21,20 +21,25 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('push', function(event) {
-    event.waitUntil(
-        self.registration.showNotification('New Message', {
-            body: 'You have received a new message.',
-            icon: 'path/to/icon.png'
-        })
-    );
+    setBadge();
 });
 
 self.addEventListener('activate', function(event) {
-    event.waitUntil(
-        self.registration.getNotifications().then(function(notifications) {
-            notifications.forEach(function(notification) {
-                notification.close();
-            });
-        })
-    );
+    clearBadge();
 });
+
+function setBadge() {
+    if ('setAppBadge' in navigator) {
+        navigator.setAppBadge(1);
+    } else {
+        console.log('setAppBadge is not supported.');
+    }
+}
+
+function clearBadge() {
+    if ('clearAppBadge' in navigator) {
+        navigator.clearAppBadge();
+    } else {
+        console.log('clearAppBadge is not supported.');
+    }
+}
