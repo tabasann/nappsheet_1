@@ -1,9 +1,4 @@
-function omikuji() {
-  let msg1;
-  let msg2;
-  let random1;
-  let random2;
-
+// app.js
 
 window.addEventListener('load', function() {
   // ページが読み込まれた際にバッジをクリア
@@ -20,7 +15,11 @@ function clearBadge() {
 }
 
 
-  
+function omikuji() {
+  let msg1;
+  let msg2;
+  let random1;
+  let random2;  
   random1 = Math.floor(Math.random() * 5);
   console.log(random1);
 
