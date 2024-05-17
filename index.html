@@ -4,45 +4,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="manifest.json">
-    //<link rel="apple-touch-icon" href="images/icon-512.png">
+    <link rel="apple-touch-icon" href="images/icon-512.png">
     <title>PWA Sample</title>
-    <script src="app.js"></script>
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
     <script>
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
-        OneSignalDeferred.push(function(OneSignal) {
-            OneSignal.init({
-                appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-                safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
-                notifyButton: {
-                    enable: true,
-                },
-            });
-            OneSignal.on('notificationDisplay', function(event) {
-                // 通知数を更新して表示する
-                updateNotificationCount(event.notification);
-            });
-            function updateNotificationCount(notification) {
-                // カウントを取得し、アイコンに表示する
-                var notificationCount = parseInt(localStorage.getItem('notificationCount')) || 0;
-                notificationCount++;
-                localStorage.setItem('notificationCount', notificationCount);
-                updateBadge(notificationCount);
-            }
-            function updateBadge(count) {
-                // アイコンに通知数を表示する
-                if ('setAppBadge' in navigator && typeof navigator.setAppBadge === 'function') {
-                    navigator.setAppBadge(count);
-                } else {
-                    document.title = (count > 0) ? `(${count}) PWA Sample` : 'PWA Sample';
-                }
-            }
-            // PWAが開かれた時に通知数をリセットする
-            window.addEventListener('appinstalled', function () {
-                localStorage.removeItem('notificationCount');
-                updateBadge(0);
-            });
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
+          notifyButton: {
+            enable: false,
+          },
         });
+
+        OneSignal.on('notificationDisplay', function(event) {
+          if (event.count > 0) {
+            OneSignal.setBadge(event.count);
+          } else {
+            OneSignal.clearBadge();
+          }
+        });
+      });
     </script>
 </head>
 <body>
@@ -53,12 +35,27 @@
         <div id="msg2"></div>
     </div>
     <input type="button" value="リセット！" id="resetBtn" onclick="reset();" disabled="disabled">
+    <span id="badge" style="display: none;"></span>
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener("load", function() {
                 navigator.serviceWorker.register('sw.js');
             });
         }
+
+        function updateBadge(count) {
+          const badgeElement = document.querySelector("#badge");
+          if (count > 0) {
+            badgeElement.textContent = count;
+            badgeElement.style.display = "inline";
+          } else {
+            badgeElement.style.display = "none";
+          }
+        }
+
+        OneSignal.push(function() {
+          OneSignal.getNotificationCount(updateBadge);
+        });
     </script>
 </body>
 </html>
