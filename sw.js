@@ -23,7 +23,7 @@ self.addEventListener('fetch', function(event) {
 
 self.addEventListener('push', function(event) {
     setBadge();
-    //showNotification(event);
+    showNotification(event);
 });
 
 self.addEventListener('push', function(event) {
