@@ -11,7 +11,20 @@ self.addEventListener('install', function(event) {
         })
     );
 });
-
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    // Onesignal SDKを登録する非同期の処理
+    // ここでOnesignalのプッシュ通知を初期化するなどの処理を行います
+    self.importScripts('https://cdn.onesignal.com/sdks/OneSignalSDK.js')
+    OneSignal.initialize({
+      appId: 'YOUR_APP_ID',
+      notifyButton: {
+        enable: true,
+      },
+      ...
+    });
+  );
+});
 self.addEventListener('fetch', function(event) {
 
     event.respondWith(
