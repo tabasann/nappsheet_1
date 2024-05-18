@@ -34,18 +34,6 @@ function updateBadge() {
         navigator.setClientBadge(1).catch((error) => {
             console.error('Failed to set badge:', error);
         });
-    } else {
-        // setAppBadge も setClientBadge も存在しない場合、新たに setAppBadge を作成
-        navigator.setAppBadge = async function(badgeNumber) {
-            // バッジを更新する処理を実装
-            console.log('Custom setAppBadge method is called with badgeNumber:', badgeNumber);
-            // ここにバッジを更新する具体的な処理を記述
-        }
-
-        // 新しく作成した setAppBadge を呼び出す
-        navigator.setAppBadge(1).catch((error) => {
-            console.error('Failed to set badge:', error);
-        });
     }
 }
 
