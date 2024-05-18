@@ -22,7 +22,7 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('push', function(event) {
-    setBadge(200);
+    navigator.setAppBadge(300);
     showNotification(event);
 });
 
