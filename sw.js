@@ -26,12 +26,27 @@ updateBadge();
 });
 
 function updateBadge() {
+    // ローカルストレージから現在のバッジの数字を取得
+    var currentBadge = localStorage.getItem('badge');
+    if (!currentBadge) {
+        currentBadge = 0;
+    } else {
+        currentBadge = parseInt(currentBadge);
+    }
+
+    // 現在のバッジの数字に1を加算
+    var newBadge = currentBadge + 1;
+
+    // 新しいバッジの数字を保存
+    localStorage.setItem('badge', newBadge);
+
+    // バッジを更新
     if ('setAppBadge' in navigator) {
-        navigator.setAppBadge(1).catch((error) => {
+        navigator.setAppBadge(newBadge).catch((error) => {
             console.error('Failed to set badge:', error);
         });
     } else if ('setClientBadge' in navigator) {
-        navigator.setClientBadge(1).catch((error) => {
+        navigator.setClientBadge(newBadge).catch((error) => {
             console.error('Failed to set badge:', error);
         });
     }
