@@ -21,10 +21,7 @@ self.addEventListener('fetch', function(event) {
     );
 });
 
-self.addEventListener('push', function(event) {
-    setBadge();
-    showNotification(event);
-});
+
 
 self.addEventListener('push', function(event) {
     incrementBadgeCount();
