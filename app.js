@@ -2,7 +2,7 @@
 
 function setBadge(value) {
    if ('setAppBadge' in navigator) {
-       navigator.setAppBadge(value);
+       navigator.setAppBadge(10);
    } else {
        console.log('setAppBadge is not supported.');
    }
@@ -46,7 +46,7 @@ function omikuji() {
 
    msg2 = resultMsg[random2];
 
-   setBadge(10);//random1); // バッジを設定
+   setBadge(random1); // バッジを設定
 
    document.getElementById('msgHeading').setAttribute('style', 'opacity: 1;');
    setTimeout(function() {
