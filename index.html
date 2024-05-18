@@ -7,51 +7,18 @@
     <link rel="apple-touch-icon" href="images/icon-512.png">
     <title>PWA Sample</title>
     <script src="app.js"></script>
-    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-    <script>
-        let badgeCount = 0;
-
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
-        OneSignalDeferred.push(function(OneSignal) {
-            OneSignal.init({
-                appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-                safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
-                notifyButton: {
-                    enable: true,
-                },
-            });
-
-            OneSignal.on('notificationDisplay', function(event) {
-                updateBadge();
-            });
-        });
-
-        function updateBadge() {
-            badgeCount++;
-            if ('setAppBadge' in navigator) {
-                navigator.setAppBadge(badgeCount).catch((error) => {
-                    console.error('Failed to set app badge:', error);
-                });
-            } else if ('setClientBadge' in navigator) {
-                navigator.setClientBadge(badgeCount).catch((error) => {
-                    console.error('Failed to set client badge:', error);
-                });
-            }
-        }
-
-        function resetBadge() {
-            badgeCount = 0;
-            if ('clearAppBadge' in navigator) {
-                navigator.clearAppBadge().catch((error) => {
-                    console.error('Failed to clear app badge:', error);
-                });
-            } else if ('clearClientBadge' in navigator) {
-                navigator.clearClientBadge().catch((error) => {
-                    console.error('Failed to clear client badge:', error);
-                });
-            }
-        }
-    </script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.init({
+      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
+      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
+      notifyButton: {
+        enable: true,
+      },
+    });
+  });</script>
 </head>
 <body>
     <input type="button" value="おみくじを引く！" onclick="omikuji();" id="playBtn">
@@ -61,28 +28,12 @@
         <div id="msg2"></div>
     </div>
     <input type="button" value="リセット！" id="resetBtn" onclick="reset();" disabled="disabled">
+</script>
     <script>
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('sw.js').then(function(registration) {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                }).catch(function(error) {
-                    console.log('Service Worker registration failed:', error);
-                });
+            window.addEventListener("load", function() {
+                navigator.serviceWorker.register('sw.js');
             });
-        }
-
-        function omikuji() {
-            // Omikuji logic
-            // Once omikuji is drawn, enable the reset button
-            document.getElementById('resetBtn').disabled = false;
-        }
-
-        function reset() {
-            // Reset logic
-            // Reset the badge count and update the badge
-            resetBadge();
-            document.getElementById('resetBtn').disabled = true;
         }
     </script>
 </body>
