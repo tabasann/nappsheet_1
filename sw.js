@@ -17,7 +17,23 @@ self.addEventListener('install', function(event) {
     // ここでOnesignalのプッシュ通知を初期化するなどの処理を行います
     self.importScripts('https://cdn.onesignal.com/sdks/OneSignalSDK.js')
     OneSignal.initialize({
-      appId: 'YOUR_APP_ID',
+    　appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
+      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
+      notifyButton: {
+        enable: true,
+      },
+      ...
+    });
+  );
+});
+self.addEventListener('fetch', function(event) {
+  event.waitUntil(
+    // Onesignal SDKを登録する非同期の処理
+    // ここでOnesignalのプッシュ通知を初期化するなどの処理を行います
+    self.importScripts('https://cdn.onesignal.com/sdks/OneSignalSDK.js')
+    OneSignal.initialize({
+    　appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
+      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
       notifyButton: {
         enable: true,
       },
