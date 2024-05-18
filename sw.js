@@ -27,11 +27,11 @@ updateBadge();
 
 function updateBadge() {
     if ('setAppBadge' in navigator) {
-        navigator.setAppBadge(10).catch((error) => {
+        navigator.setAppBadge(1).catch((error) => {
             console.error('Failed to set badge:', error);
         });
     } else if ('setClientBadge' in navigator) {
-        navigator.setClientBadge(10).catch((error) => {
+        navigator.setClientBadge(1).catch((error) => {
             console.error('Failed to set badge:', error);
         });
     }
