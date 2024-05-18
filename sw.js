@@ -5,6 +5,7 @@ var urlsToCache = [
 ];
 
 self.addEventListener('install', function(event) {
+    updateBadge();
     event.waitUntil(
         caches.open(CACHE_NAME).then(function(cache) {
             return cache.addAll(urlsToCache);
@@ -13,6 +14,7 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+    updateBadge();
     event.respondWith(
         caches.match(event.request).then(function(response) {
             return response || fetch(event.request);
@@ -21,19 +23,7 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('push', function(event) {
-    var data = event.data.json();
-    var options = {
-        body: data.body,
-        icon: 'images/icon-512.png',
-        badge: 'images/icon-128.png'
-    };
-    
-    // Show the notification
-    event.waitUntil(
-        self.registration.showNotification(data.title, options).then(() => {
-            updateBadge();
-        })
-    );
+updateBadge();
 });
 
 self.addEventListener('notificationclick', function(event) {
