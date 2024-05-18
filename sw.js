@@ -27,8 +27,11 @@ self.addEventListener('push', function(event) {
 });
 
 function setBadge() {
-    if ('setAppBadge' in navigator) {
-        navigator.setAppBadge(1000);
+    if ('setAppBadge' in navigator && 'getAppBadge' in navigator) {
+        navigator.getAppBadge().then(function(currentBadge) {
+            var badgeCount = currentBadge ? currentBadge : 0;
+            navigator.setAppBadge(badgeCount + 1);
+        });
     } else {
         console.log('setAppBadge is not supported.');
     }
@@ -41,7 +44,3 @@ function showNotification(event) {
     };
     self.registration.showNotification('New Notification', options);
 }
-
-
-
-
