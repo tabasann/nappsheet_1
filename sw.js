@@ -26,7 +26,7 @@ updateBadge();
 });
 
 function updateBadge() {
-    let currentBadgeValue = 0; // 現在のバッジの値を取得する必要がある場合、ここにその方法を追加する必要があります
+    let currentBadgeValue = 2; // 現在のバッジの値を取得する必要がある場合、ここにその方法を追加する必要があります
 
     if ('setAppBadge' in navigator) {
         currentBadgeValue += 1; // 現在のバッジの値に1を加える
