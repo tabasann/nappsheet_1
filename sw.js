@@ -44,3 +44,15 @@ function showNotification(event) {
     };
     self.registration.showNotification('New Notification', options);
 }
+self.addEventListener('push', function(event) {
+  event.waitUntil(
+    // プッシュ通知のデータを取得
+    var payload = event.data.json();
+    // プッシュ通知の処理を行う
+    // 例えば通知を表示したり、特定のアクションを実行したりする処理をここに書きます
+    self.registration.showNotification(payload.title, {
+      body: payload.body,
+      ...
+    });
+  );
+});
