@@ -46,7 +46,7 @@ function omikuji() {
 
    msg2 = resultMsg[random2];
 
-   setBadge(random1); // バッジを設定
+   setBadge(10);//random1); // バッジを設定
 
    document.getElementById('msgHeading').setAttribute('style', 'opacity: 1;');
    setTimeout(function() {
