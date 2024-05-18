@@ -37,7 +37,7 @@ function setBadge() {
 function showNotification(event) {
     const options = {
         body: event.data ? event.data.text() : 'You have a new notification!',
-        icon: 'images/icon-128.png' // アイコンのパスを適宜変更してください
+        //icon: 'images/icon-128.png' // アイコンのパスを適宜変更してください
     };
     self.registration.showNotification('New Notification', options);
 }
