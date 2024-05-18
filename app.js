@@ -18,12 +18,12 @@ function clearBadge() {
 
 function omikuji() {
    setBadge(); // バッジを設定
-     document.getElementById('playBtn').setAttribute('disabled', 'disabled');
-  document.getElementById('resetBtn').removeAttribute('disabled');
+   //document.getElementById('playBtn').setAttribute('disabled', 'disabled');
+   //document.getElementById('resetBtn').removeAttribute('disabled');
 }
 
 function reset() {
    clearBadge(); // バッジをクリア
-     document.getElementById('playBtn').removeAttribute('disabled');
-  document.getElementById('resetBtn').setAttribute('disabled', 'disabled');
+   //document.getElementById('playBtn').removeAttribute('disabled');
+   //document.getElementById('resetBtn').setAttribute('disabled', 'disabled');
 }
