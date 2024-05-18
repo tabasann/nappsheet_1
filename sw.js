@@ -26,14 +26,30 @@ self.addEventListener('push', function(event) {
     showNotification(event);
 });
 
+// 初期値をローカルストレージから取得する。保存された値がない場合は初期値を使用する
+let currentBadgeValue = localStorage.getItem('badgeValue') ? parseInt(localStorage.getItem('badgeValue')) : 2;
+
 function setBadge() {
+    // バッジの値を更新する処理
+    currentBadgeValue += 1;
+
+    // 更新したバッジの値をローカルストレージに保存する
+    localStorage.setItem('badgeValue', currentBadgeValue);
+
     // バッジを設定する処理
     if ('setAppBadge' in navigator) {
-        navigator.setAppBadge(50);
-    } else {
-        console.log('setAppBadge is not supported.');
+        navigator.setAppBadge(currentBadgeValue).catch((error) => {
+            console.error('Failed to set badge:', error);
+        });
+    } else if ('setClientBadge' in navigator) {
+        navigator.setClientBadge(currentBadgeValue).catch((error) => {
+            console.error('Failed to set badge:', error);
+        });
     }
 }
+
+// ページの読み込みが完了した後、バッジの値を取得する処理などがあればここで行う
+
 
 function showNotification(event) {
     const options = {
