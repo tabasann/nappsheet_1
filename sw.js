@@ -22,7 +22,7 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('push', function(event) {
-    setBadge();
+    setBadge(1000);
     showNotification(event);
 });
 
