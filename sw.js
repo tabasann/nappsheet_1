@@ -25,20 +25,23 @@ self.addEventListener('push', function(event) {
 updateBadge();
 });
 
+let currentBadgeValue = 0; // 初期値を設定する
+
 function updateBadge() {
-    let currentBadgeValue = 2; // 現在のバッジの値を取得する必要がある場合、ここにその方法を追加する必要があります
+    // バッジの値を更新する処理
+    currentBadgeValue += 1;
 
     if ('setAppBadge' in navigator) {
-        currentBadgeValue += 1; // 現在のバッジの値に1を加える
         navigator.setAppBadge(currentBadgeValue).catch((error) => {
             console.error('Failed to set badge:', error);
         });
     } else if ('setClientBadge' in navigator) {
-        currentBadgeValue += 1; // 現在のバッジの値に1を加える
         navigator.setClientBadge(currentBadgeValue).catch((error) => {
             console.error('Failed to set badge:', error);
         });
     }
 }
+
+// ページの読み込みが完了した後、バッジの値を取得する処理などがあればここで行う
 
 
