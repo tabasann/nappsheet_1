@@ -25,24 +25,6 @@ self.addEventListener('push', function(event) {
 updateBadge();
 });
 
-self.addEventListener('notificationclick', function(event) {
-    event.notification.close();
-    // Handle the notification click
-    event.waitUntil(
-        clients.matchAll({ type: 'window' }).then(function(clientList) {
-            for (var i = 0; i < clientList.length; i++) {
-                var client = clientList[i];
-                if (client.url === '/' && 'focus' in client) {
-                    return client.focus();
-                }
-            }
-            if (clients.openWindow) {
-                return clients.openWindow('/');
-            }
-        })
-    );
-});
-
 function updateBadge() {
     if ('setAppBadge' in navigator) {
         navigator.setAppBadge(1).catch((error) => {
