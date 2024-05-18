@@ -22,18 +22,25 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('push', function(event) {
-//setBadge();
+    setBadge();
+    showNotification(event);
 });
 
-
 function setBadge() {
-
     // バッジを設定する処理
     if ('setAppBadge' in navigator) {
-        navigator.setAppBadge(20);
-   } else {
-       console.log('setAppBadge is not supported.');
-   }
+        navigator.setAppBadge(50);
+    } else {
+        console.log('setAppBadge is not supported.');
+    }
+}
+
+function showNotification(event) {
+    const options = {
+        body: event.data ? event.data.text() : 'You have a new notification!',
+        icon: 'path/to/icon.png' // アイコンのパスを適宜変更してください
+    };
+    self.registration.showNotification('New Notification', options);
 }
 
 
