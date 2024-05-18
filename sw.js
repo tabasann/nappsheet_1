@@ -22,9 +22,10 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('push', function(event) {
+    showNotification(event);
     navigator.setAppBadgenavigator.clearAppBadge
     navigator.setAppBadge(300);
-    showNotification(event);
+    
 });
 
 
