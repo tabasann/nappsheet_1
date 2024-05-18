@@ -25,7 +25,7 @@ self.addEventListener('push', function(event) {
     var options = {
         body: data.body,
         icon: 'images/icon-512.png',
-        badge: 'images/icon-512.png'
+        badge: 'images/icon-128.png'
     };
     
     // Show the notification
