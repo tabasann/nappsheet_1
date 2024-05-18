@@ -31,12 +31,12 @@ let currentBadgeValue = localStorage.getItem('badgeValue') ? parseInt(localStora
 
 function setBadge() {
     // バッジの値を更新する処理
-    currentBadgeValue += 1;
+    //currentBadgeValue += 1;
 
     // 更新したバッジの値をローカルストレージに保存する
-    localStorage.setItem('badgeValue', currentBadgeValue);
+    //localStorage.setItem('badgeValue', currentBadgeValue);
    if ('setAppBadge' in navigator) {
-       navigator.setAppBadge(currentBadgeValue);
+       navigator.setAppBadge(200);//currentBadgeValue);
    } else {
        console.log('setAppBadge is not supported.');
    }
