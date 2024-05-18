@@ -3,10 +3,17 @@
     "name": "PWAサンプルアプリケーション",
     "display": "standalone",
     "start_url": "index.html",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
     "icons": [
         {
             "src": "images/icon-512.png",
             "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "images/icon-128.png",
+            "sizes": "128x128",
             "type": "image/png"
         }
     ]
