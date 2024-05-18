@@ -22,16 +22,72 @@ self.addEventListener('fetch', function(event) {
 });
 
 self.addEventListener('push', function(event) {
-    setBadge();
+    setBadge(200);
     showNotification(event);
 });
 
-function setBadge() {
-    if ('setAppBadge' in navigator && 'getAppBadge' in navigator) {
-        navigator.getAppBadge().then(function(currentBadge) {
-            var badgeCount = currentBadge ? currentBadge : 0;
-            navigator.setAppBadge(badgeCount + 1);
-        });
+self.addEventListener('push', function(event) {
+    //incrementBadgeCount();
+    //showNotification(event);
+});
+
+function incrementBadgeCount() {
+    getBadgeCount().then(currentCount => {
+        const newCount = currentCount + 1;
+        setBadge(newCount);
+        saveBadgeCount(newCount);
+    });
+}
+
+function getBadgeCount() {
+    return new Promise((resolve, reject) => {
+        const request = indexedDB.open('badgeDB', 1);
+
+        request.onerror = (event) => {
+            console.error('Database error:', event.target.errorCode);
+            resolve(0);
+        };
+
+        request.onsuccess = (event) => {
+            const db = event.target.result;
+            const transaction = db.transaction(['badgeStore'], 'readonly');
+            const objectStore = transaction.objectStore('badgeStore');
+            const getRequest = objectStore.get('badgeCount');
+
+            getRequest.onsuccess = () => {
+                resolve(getRequest.result?.count || 0);
+            };
+
+            getRequest.onerror = () => {
+                console.error('Failed to get badge count');
+                resolve(0);
+            };
+        };
+
+        request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+            const objectStore = db.createObjectStore('badgeStore', { keyPath: 'id' });
+            objectStore.transaction.oncomplete = () => {
+                const transaction = db.transaction(['badgeStore'], 'readwrite');
+                transaction.objectStore('badgeStore').add({ id: 'badgeCount', count: 0 });
+            };
+        };
+    });
+}
+
+function saveBadgeCount(count) {
+    const request = indexedDB.open('badgeDB', 1);
+
+    request.onsuccess = (event) => {
+        const db = event.target.result;
+        const transaction = db.transaction(['badgeStore'], 'readwrite');
+        transaction.objectStore('badgeStore').put({ id: 'badgeCount', count: count });
+    };
+}
+
+function setBadge(count) {
+    if ('setAppBadge' in navigator) {
+        navigator.setAppBadge(count);
     } else {
         console.log('setAppBadge is not supported.');
     }
@@ -40,7 +96,7 @@ function setBadge() {
 function showNotification(event) {
     const options = {
         body: event.data ? event.data.text() : 'You have a new notification!',
-        //icon: 'images/icon-128.png' // アイコンのパスを適宜変更してください
+        icon: 'images/icon-128.png' // アイコンのパスを適宜変更してください
     };
     self.registration.showNotification('New Notification', options);
 }
