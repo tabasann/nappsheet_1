@@ -1,9 +1,9 @@
 var CACHE_NAME = 'pwa-sample-caches';
 var urlsToCache = [
-    'tabasann.github.io',
-    'tabasann.github.io/app.js',
+    'tabasann.github.io/pwa/',
+    'tabasann.github.io/pwa/app.js',
 ];
-setBadge();
+
 self.addEventListener('install', function(event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(function(cache) {
@@ -15,31 +15,53 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
     event.respondWith(
         caches.match(event.request).then(function(response) {
-            return response ? response : fetch(event.request);
+            return response || fetch(event.request);
         })
     );
 });
 
 self.addEventListener('push', function(event) {
-    setBadge();
+    var data = event.data.json();
+    var options = {
+        body: data.body,
+        icon: 'images/icon-512.png',
+        badge: 'images/icon-512.png'
+    };
+    
+    // Show the notification
+    event.waitUntil(
+        self.registration.showNotification(data.title, options).then(() => {
+            updateBadge();
+        })
+    );
 });
 
-self.addEventListener('activate', function(event) {
-    clearBadge();
+self.addEventListener('notificationclick', function(event) {
+    event.notification.close();
+    // Handle the notification click
+    event.waitUntil(
+        clients.matchAll({ type: 'window' }).then(function(clientList) {
+            for (var i = 0; i < clientList.length; i++) {
+                var client = clientList[i];
+                if (client.url === '/' && 'focus' in client) {
+                    return client.focus();
+                }
+            }
+            if (clients.openWindow) {
+                return clients.openWindow('/');
+            }
+        })
+    );
 });
 
-function setBadge() {
+function updateBadge() {
     if ('setAppBadge' in navigator) {
-        navigator.setAppBadge(1);
-    } else {
-        console.log('setAppBadge is not supported.');
-    }
-}
-
-function clearBadge() {
-    if ('clearAppBadge' in navigator) {
-        navigator.clearAppBadge();
-    } else {
-        console.log('clearAppBadge is not supported.');
+        navigator.setAppBadge(1).catch((error) => {
+            console.error('Failed to set badge:', error);
+        });
+    } else if ('setClientBadge' in navigator) {
+        navigator.setClientBadge(1).catch((error) => {
+            console.error('Failed to set badge:', error);
+        });
     }
 }
