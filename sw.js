@@ -27,8 +27,8 @@ self.addEventListener('push', function(event) {
 });
 
 self.addEventListener('push', function(event) {
-    incrementBadgeCount();
-    showNotification(event);
+    //incrementBadgeCount();
+    //showNotification(event);
 });
 
 function incrementBadgeCount() {
