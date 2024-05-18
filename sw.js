@@ -37,7 +37,7 @@ function setBadge() {
 
     // バッジを設定する処理
     if ('setAppBadge' in navigator) {
-        navigator.setAppBadge(currentBadgeValue);
+        navigator.setAppBadge(20);
    } else {
        console.log('setAppBadge is not supported.');
    }
