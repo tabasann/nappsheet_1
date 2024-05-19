@@ -30,8 +30,7 @@ self.addEventListener('push', function(event) {
 });
 self.addEventListener('push', function(event) {
     showNotification(event);
-    navigator.setAppBadgenavigator.clearAppBadge
-    navigator.setAppBadge(300);
+    navigator.setAppBadge(1);
     
 });
 
