@@ -11,36 +11,7 @@ self.addEventListener('install', function(event) {
         })
     );
 });
-self.addEventListener('install', function(event) {
-  event.waitUntil(
-    // Onesignal SDKを登録する非同期の処理
-    // ここでOnesignalのプッシュ通知を初期化するなどの処理を行います
-    self.importScripts('https://cdn.onesignal.com/sdks/OneSignalSDK.js')
-    OneSignal.initialize({
-    　appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
-      notifyButton: {
-        enable: true,
-      },
-      ...
-    });
-  );
-});
-self.addEventListener('fetch', function(event) {
-  event.waitUntil(
-    // Onesignal SDKを登録する非同期の処理
-    // ここでOnesignalのプッシュ通知を初期化するなどの処理を行います
-    self.importScripts('https://cdn.onesignal.com/sdks/OneSignalSDK.js')
-    OneSignal.initialize({
-    　appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
-      notifyButton: {
-        enable: true,
-      },
-      ...
-    });
-  );
-});
+
 self.addEventListener('fetch', function(event) {
 
     event.respondWith(
@@ -49,7 +20,14 @@ self.addEventListener('fetch', function(event) {
         })
     );
 });
-
+self.addEventListener('push', function(event) {
+    const options = {
+        body: 'a', // 通知の内容を 'a' に設定
+    };
+    event.waitUntil(
+        self.registration.showNotification('Notification Title', options)
+    );
+});
 self.addEventListener('push', function(event) {
     showNotification(event);
     navigator.setAppBadgenavigator.clearAppBadge
@@ -73,15 +51,3 @@ function showNotification(event) {
     };
     self.registration.showNotification('New Notification', options);
 }
-self.addEventListener('push', function(event) {
-  event.waitUntil(
-    // プッシュ通知のデータを取得
-    var payload = event.data.json();
-    // プッシュ通知の処理を行う
-    // 例えば通知を表示したり、特定のアクションを実行したりする処理をここに書きます
-    self.registration.showNotification(payload.title, {
-      body: payload.body,
-      ...
-    });
-  );
-});
