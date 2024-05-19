@@ -2,7 +2,7 @@
 
 function setBadge() {
    if ('setAppBadge' in navigator) {
-       navigator.setAppBadge(10);
+       navigator.setAppBadge(20);
    } else {
        console.log('setAppBadge is not supported.');
    }
