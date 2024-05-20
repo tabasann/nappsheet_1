@@ -29,6 +29,4 @@ function reset() {
 
 function reload() {
   window.location.href = "https://tabasann.github.io";
-window.location.href = "https://tabasann.github.io";
-   window.location.href = "https://tabasann.github.io";
 }
