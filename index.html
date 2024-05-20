@@ -43,9 +43,13 @@
     <input type="button" value="ページ更新！" onclick="reload();" id="reloadBtn">
 </script>
     
-       <script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener("load", function() {
                 navigator.serviceWorker.register('sw.js');
-        </script>
+            });
+        }
+    </script>
 
     
 </body>
