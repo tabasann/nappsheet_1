@@ -61,15 +61,7 @@ function updateBadge() {
     localStorage.setItem('badgeValue', currentBadgeValue);
 
     // バッジを設定する処理
-    if ('setAppBadge' in navigator) {
-        navigator.setAppBadge(currentBadgeValue).catch((error) => {
-            console.error('Failed to set badge:', error);
-        });
-    } else if ('setClientBadge' in navigator) {
-        navigator.setClientBadge(currentBadgeValue).catch((error) => {
-            console.error('Failed to set badge:', error);
-        });
-    }
+    navigator.setAppBadge(currentBadgeValue)
 }
 
 // ページの読み込みが完了した後、バッジの値を取得する処理などがあればここで行う
