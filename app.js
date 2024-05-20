@@ -23,7 +23,6 @@ function omikuji() {
 
 function reset() {
    clearBadge(); // バッジをクリア
-   location.reload(); // サイトを読み込みなおす
 }
 
 // app.js
