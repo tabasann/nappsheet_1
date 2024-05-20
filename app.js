@@ -29,5 +29,5 @@ function reset() {
 // app.js
 
 function reload() {
- location.reload(); // サイトを読み込みなおす
-};
+  window.location.reload();
+}
