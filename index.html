@@ -22,12 +22,13 @@
     </script>   
 </head>
 <body>
+    <script>
+        navigator.serviceWorker.register('sw.js');
+    </script>
     <input type="button" value="バッジ表示!" onclick="omikuji();" id="playBtn">
     <div></div>
     <input type="button" value="バッジリセット！" onclick="reset();" id="resetBtn">
 
-    <script>
-        navigator.serviceWorker.register('sw.js');
-    </script>
+
 </body>
 </html>
