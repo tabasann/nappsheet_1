@@ -36,6 +36,7 @@ function swjs() {
 }
 
 // ページが読み込まれた時に Service Worker を登録する
-window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js')
+window.addEventListener('load', function() {
+    navigator.serviceWorker.register('sw.js');
 });
+
