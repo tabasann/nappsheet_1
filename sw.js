@@ -40,6 +40,10 @@ self.addEventListener('fetch', function(event) {
     );
 });
 
+window.addEventListener('load', function() {
+    navigator.serviceWorker.register('sw.js');
+});
+
 /*
 self.addEventListener('fetch', function(event) {
    navigator.serviceWorker.register('sw.js');
