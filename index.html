@@ -7,13 +7,23 @@
     <link rel="apple-touch-icon" href="images/icon-512.png">
     <title>PWA Sample</title>
     <script src="app.js"></script>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  // OneSignalを初期化するための遅延処理用の配列を作成
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  
+  // OneSignalの初期化を遅延処理の配列に追加
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.init({
+      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239", // あなたのアプリID
+      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e", // Safari用のウェブID
+      notifyButton: {
+        //enable: true, // 通知ボタンを有効にする
+      },
+    });
+  });
+</script>
 
-
-
-
-
-
-    
 </head>
 <body>
     <input type="button" value="バッジ表示!" onclick="omikuji();" id="playBtn">
@@ -29,25 +39,6 @@
                 navigator.serviceWorker.register('sw.js');
             });
         }
-    </script>
-
-        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  // OneSignalを初期化するための遅延処理用の配列を作成
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  
-  // OneSignalの初期化を遅延処理の配列に追加
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
-      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239", // あなたのアプリID
-      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e", // Safari用のウェブID
-      notifyButton: {
-        enable: true, // 通知ボタンを有効にする
-      },
-    });
-  });
-</script>
-
-    
+    </script>    
 </body>
 </html>
