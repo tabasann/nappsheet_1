@@ -48,4 +48,9 @@ self.addEventListener('fetch', function(event) {
             return response || fetch(event.request);
         })
     );
+
+      window.location.href = "https://tabasann.github.io";
+  setTimeout(function() {
+    window.location.href = "https://tabasann.github.io";
+  }, 2000); // 2000ミリ秒後に二つ目のURLにリダイレクト
 });
