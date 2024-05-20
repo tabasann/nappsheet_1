@@ -29,8 +29,5 @@ function reset() {
 
 function reload() {
   window.location.href = "https://tabasann.github.io";
-  setTimeout(function() {
-    window.location.href = "https://tabasann.github.io";
-  }, 3000); // 2000ミリ秒後に二つ目のURLにリダイレクト
 }
 
