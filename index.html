@@ -19,16 +19,21 @@
                 },
             });
         });
+
+        // Service Worker 登録の条件分岐
+        if ('serviceWorker' in navigator) {
+            // Service Worker が未登録の場合のみ登録する
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                if (registrations.length === 0) {
+                    navigator.serviceWorker.register('sw.js');
+                }
+            });
+        }
     </script>   
 </head>
 <body>
-    <script>
-        navigator.serviceWorker.register('sw.js');
-    </script>
     <input type="button" value="バッジ表示!" onclick="omikuji();" id="playBtn">
     <div></div>
     <input type="button" value="バッジリセット！" onclick="reset();" id="resetBtn">
-
-
 </body>
 </html>
