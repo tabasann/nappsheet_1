@@ -34,3 +34,8 @@ function reload() {
 function swjs() {
   navigator.serviceWorker.register('sw.js');
 }
+
+// ページが読み込まれた時に Service Worker を登録する
+window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+});
