@@ -26,3 +26,6 @@ function reset() {
    location.reload(); // サイトを読み込みなおす
 }
 
+function reload() {
+   location.reload(); // サイトを読み込みなおす
+}
