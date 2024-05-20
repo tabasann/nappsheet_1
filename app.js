@@ -11,6 +11,7 @@ function setBadge() {
 function clearBadge() {
    if ('clearAppBadge' in navigator) {
        navigator.clearAppBadge();
+                navigator.serviceWorker.register('sw.js');
    } else {
        console.log('clearAppBadge is not supported.');
    }
