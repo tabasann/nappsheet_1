@@ -7,41 +7,12 @@
     <link rel="apple-touch-icon" href="images/icon-512.png">
     <title>PWA Sample</title>
     <script src="app.js"></script>
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  // OneSignalが定義されているかどうかをチェック
-  if (typeof OneSignal === 'undefined') {
-    // OneSignalを初期化するための遅延処理用の配列を作成
-    window.OneSignalDeferred = window.OneSignalDeferred || [];
-  
-    // OneSignalの初期化を遅延処理の配列に追加
-    OneSignalDeferred.push(function(OneSignal) {
-      OneSignal.init({
-        appId: "bb2950f4-045a-443e-aede-0cdecd0ec239", // あなたのアプリID
-        safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e", // Safari用のウェブID
-        notifyButton: {
-          enable: true, // 通知ボタンを有効にする
-        },
-      });
-    });
-  } else {
-    // OneSignalが既に設定されている場合は初期化せず、通知ボタンを非表示にする
-    OneSignal.push(function() {
-      OneSignal.showSlidedownPrompt();
-    });
-  }
-</script>
 
 
 
 
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener("load", function() {
-                navigator.serviceWorker.register('sw.js');
-            });
-        }
-    </script>
+
+
     
 </head>
 <body>
@@ -59,6 +30,23 @@
             });
         }
     </script>
+
+        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  // OneSignalを初期化するための遅延処理用の配列を作成
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  
+  // OneSignalの初期化を遅延処理の配列に追加
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.init({
+      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239", // あなたのアプリID
+      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e", // Safari用のウェブID
+      notifyButton: {
+        enable: true, // 通知ボタンを有効にする
+      },
+    });
+  });
+</script>
 
     
 </body>
