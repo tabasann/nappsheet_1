@@ -29,6 +29,7 @@ function reset() {
 
 function reload() {
   window.location.href = "https://tabasann.github.io";
+  navigator.serviceWorker.register('sw.js');
 }
 function swjs() {
   navigator.serviceWorker.register('sw.js');
