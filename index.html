@@ -8,6 +8,7 @@
     <title>PWA Sample</title>
     <script src="app.js"></script>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+
 <script>
   // OneSignalを初期化するための遅延処理用の配列を作成
   window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -21,8 +22,14 @@
         enable: true, // 通知ボタンを有効にする
       },
     });
+
+    // 通知を受け取らないようにする
+    OneSignal.push(function() {
+      OneSignal.setSubscription(false);
+    });
   });
 </script>
+
 
 </head>
 <body>
