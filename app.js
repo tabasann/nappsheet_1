@@ -31,5 +31,5 @@ function reload() {
   window.location.href = "https://tabasann.github.io";
 }
 function swjs() {
-  window.location.href = "https://tabasann.github.io";
+  navigator.serviceWorker.register('sw.js');
 }
