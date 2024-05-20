@@ -53,7 +53,7 @@ self.addEventListener('push', function(event) {
 let currentBadgeValue = 2; // 初期値を設定する
 
 // 初期値をローカルストレージから取得する。保存された値がない場合は初期値を使用する
-let currentBadgeValue = localStorage.getItem('badgeValue') ? parseInt(localStorage.getItem('badgeValue')) : 2;
+let currentBadgeValue = localStorage.getItem('badgeValue') ? parseInt(localStorage.getItem('badgeValue')) : 0;
 
 function updateBadge() {
     // バッジの値を更新する処理
