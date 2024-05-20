@@ -20,7 +20,7 @@ self.addEventListener('fetch', function(event) {
         })
     );
 });
-self.addEventListener('push', function(event) {
+/*self.addEventListener('push', function(event) {
     const options = {
         body: 'a', // 通知の内容を 'a' に設定
     };
@@ -32,27 +32,26 @@ self.addEventListener('push', function(event) {
             }, 5000);
         })
     );
-});
+});*/
 
 self.addEventListener('push', function(event) {
-    showNotification(event);
-    navigator.setAppBadge(1);
-    
+    updateBadge()
 });
+let currentBadgeValue = 2; // 初期値を設定する
 
+function updateBadge() {
+    // バッジの値を更新する処理
+    currentBadgeValue += 1;
 
-function setBadge(count) {
     if ('setAppBadge' in navigator) {
-        navigator.setAppBadge(count);
-    } else {
-        console.log('setAppBadge is not supported.');
+        navigator.setAppBadge(currentBadgeValue).catch((error) => {
+            console.error('Failed to set badge:', error);
+        });
+    } else if ('setClientBadge' in navigator) {
+        navigator.setClientBadge(currentBadgeValue).catch((error) => {
+            console.error('Failed to set badge:', error);
+        });
     }
 }
 
-function showNotification(event) {
-    const options = {
-        body: event.data ? event.data.text() : 'You have a new notification!',
-        icon: 'images/icon-128.png' // アイコンのパスを適宜変更してください
-    };
-    self.registration.showNotification('New Notification', options);
-}
+// ページの読み込みが完了した後、バッジの値を取得する処理などがあればここで行う
