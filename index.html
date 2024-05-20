@@ -9,8 +9,8 @@
     <script src="app.js"></script>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
-        window.OneSignalDeferred = window.OneSignalDeferred || [];
         navigator.serviceWorker.register('sw.js');
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
         OneSignalDeferred.push(function(OneSignal) {
             OneSignal.init({
                 appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
