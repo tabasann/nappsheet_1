@@ -48,7 +48,23 @@ self.addEventListener('fetch', function(event) {
             }, 1000);
         })
     );
-});*/
+});
+// 初期値をローカルストレージから取得する。保存された値がない場合は初期値を使用する
+let currentBadgeValue = 0;
+
+function updateBadge() {
+    // バッジの値を更新する処理
+    currentBadgeValue += 1;
+
+    // 更新したバッジの値をローカルストレージに保存する
+    //localStorage.setItem('badgeValue', currentBadgeValue);
+
+    // バッジを設定する処理
+    navigator.setAppBadge(currentBadgeValue);
+}
+
+// ページの読み込みが完了した後、バッジの値を取得する処理などがあればここで行う
+*/
 
 self.addEventListener('push', function(event) {
     // プッシュ通知のデータを取得
@@ -65,23 +81,7 @@ self.addEventListener('push', function(event) {
         self.registration.showNotification(pushData.title, options)
     );
 
-    updateBadge(); // バッジのカウントをインクリメント
+    navigator.setAppBadge(pushData.title);
 });
 
-
-// 初期値をローカルストレージから取得する。保存された値がない場合は初期値を使用する
-let currentBadgeValue = 0;
-
-function updateBadge() {
-    // バッジの値を更新する処理
-    currentBadgeValue += 1;
-
-    // 更新したバッジの値をローカルストレージに保存する
-    //localStorage.setItem('badgeValue', currentBadgeValue);
-
-    // バッジを設定する処理
-    navigator.setAppBadge(currentBadgeValue);
-}
-
-// ページの読み込みが完了した後、バッジの値を取得する処理などがあればここで行う
 
