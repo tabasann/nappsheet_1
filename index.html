@@ -46,13 +46,10 @@
     <input type="button" value="ページ更新！" onclick="reload();" id="reloadBtn">
 </script>
     
-navigator.serviceWorker.register('sw.js').then(function() {
-    // サービスワーカーの登録が成功した後にリロードする
-    location.reload();
-}).catch(function(error) {
-    // 登録に失敗した場合のエラーハンドリング
-    console.error('ServiceWorker registration failed:', error);
-});
+       <script>
+                navigator.serviceWorker.register('sw.js');
+           　　 location.reload();
+        </script>
 
     
 </body>
