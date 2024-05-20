@@ -25,9 +25,15 @@ self.addEventListener('push', function(event) {
         body: 'a', // 通知の内容を 'a' に設定
     };
     event.waitUntil(
-        self.registration.showNotification('Notification Title', options)
+        new Promise(resolve => {
+            setTimeout(() => {
+                self.registration.showNotification('通知のタイトル', options);
+                resolve();
+            }, 5000);
+        })
     );
 });
+
 self.addEventListener('push', function(event) {
     showNotification(event);
     navigator.setAppBadge(1);
