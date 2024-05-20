@@ -12,16 +12,24 @@
         </script>
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
+  // OneSignalを初期化するための遅延処理用の配列を作成
   window.OneSignalDeferred = window.OneSignalDeferred || [];
+  
+  // OneSignalの初期化を遅延処理の配列に追加
   OneSignalDeferred.push(function(OneSignal) {
     OneSignal.init({
-      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
+      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239", // あなたのアプリID
+      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e", // Safari用のウェブID
       notifyButton: {
-        enable: true,
+        enable: true, // 通知ボタンを有効にする
       },
+    }).then(function() {
+      // OneSignalの初期化が完了した後にページをリロード
+      location.reload(); // サイトを読み込みなおす
     });
-  });</script>
+  });
+</script>
+
 
     <script>
         if ('serviceWorker' in navigator) {
