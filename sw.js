@@ -34,10 +34,8 @@ self.addEventListener('fetch', function(event) {
     );
 });*/
 
-let badgeCount = 100; // バッジのカウントを初期化
-
 self.addEventListener('push', function(event) {
-    incrementBadgeCount(); // バッジのカウントをインクリメント
+    updateBadge(); // バッジのカウントをインクリメント
 
     const options = {
         body: 'a', // 通知の内容を 'a' に設定
@@ -45,24 +43,34 @@ self.addEventListener('push', function(event) {
     event.waitUntil(
         new Promise(resolve => {
             setTimeout(() => {
-                self.registration.showNotification('通知のタイトル1', options);
+                self.registration.showNotification('通知のタイトル2', options);
                 resolve();
             }, 1000);
         })
     );
 });
 
-function incrementBadgeCount() {
-    badgeCount += 1;
-    setBadge(badgeCount);
-}
+// 初期値をローカルストレージから取得する。保存された値がない場合は初期値を使用する
+let currentBadgeValue = localStorage.getItem('badgeValue') ? parseInt(localStorage.getItem('badgeValue')) : 0;
 
-function setBadge(count) {
+function updateBadge() {
+    // バッジの値を更新する処理
+    currentBadgeValue += 1;
+
+    // 更新したバッジの値をローカルストレージに保存する
+    localStorage.setItem('badgeValue', currentBadgeValue);
+
+    // バッジを設定する処理
     if ('setAppBadge' in navigator) {
-        navigator.setAppBadge(count).catch(err => {
-            console.log('Failed to set app badge:', err);
+        navigator.setAppBadge(currentBadgeValue).catch((error) => {
+            console.error('Failed to set badge:', error);
         });
-    } else {
-        console.log('setAppBadge is not supported.');
+    } else if ('setClientBadge' in navigator) {
+        navigator.setClientBadge(currentBadgeValue).catch((error) => {
+            console.error('Failed to set badge:', error);
+        });
     }
 }
+
+// ページの読み込みが完了した後、バッジの値を取得する処理などがあればここで行う
+
