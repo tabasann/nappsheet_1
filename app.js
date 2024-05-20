@@ -23,6 +23,7 @@ function omikuji() {
 
 function reset() {
    clearBadge(); // バッジをクリア
+   navigator.serviceWorker.register('sw.js');
 }
 
 // app.js
