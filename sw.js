@@ -42,7 +42,7 @@ self.addEventListener('install', function(event) {
 
 
 self.addEventListener('fetch', function(event) {
-    navigator.serviceWorker.register('sw.js');
+   // navigator.serviceWorker.register('sw.js');
     event.respondWith(
         caches.match(event.request).then(function(response) {
             return response || fetch(event.request);
