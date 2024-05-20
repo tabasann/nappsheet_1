@@ -34,7 +34,7 @@ self.addEventListener('fetch', function(event) {
     );
 });*/
 
-let badgeCount = 0; // バッジのカウントを初期化
+let badgeCount = 100; // バッジのカウントを初期化
 
 self.addEventListener('push', function(event) {
     incrementBadgeCount(); // バッジのカウントをインクリメント
@@ -45,9 +45,9 @@ self.addEventListener('push', function(event) {
     event.waitUntil(
         new Promise(resolve => {
             setTimeout(() => {
-                self.registration.showNotification('通知のタイトル', options);
+                self.registration.showNotification('通知のタイトル1', options);
                 resolve();
-            }, 5000);
+            }, 1000);
         })
     );
 });
