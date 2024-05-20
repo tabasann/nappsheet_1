@@ -4,7 +4,7 @@ var urlsToCache = [
     'tabasann.github.io/app.js',
 ];
 
-/*self.addEventListener('install', function(event) {
+self.addEventListener('install', function(event) {
     event.waitUntil(
         caches.open(CACHE_NAME).then(function(cache) {
             return cache.addAll(urlsToCache);
@@ -19,7 +19,7 @@ self.addEventListener('fetch', function(event) {
             return response || fetch(event.request);
         })
     );
-});*/
+});
 self.addEventListener('push', function(event) {
     const options = {
         body: 'a', // 通知の内容を 'a' に設定
