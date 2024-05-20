@@ -4,6 +4,21 @@
          <script>
                     navigator.serviceWorker.register('sw.js');
     </script> 
+
+
+
+
+ <script>
+                 // Service Worker 登録の条件分岐
+        if ('serviceWorker' in navigator) {
+            // Service Worker が未登録の場合のみ登録する
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                if (registrations.length === 0) {
+                    navigator.serviceWorker.register('sw.js');
+                }
+            });
+        }
+    </script> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="manifest.json">
