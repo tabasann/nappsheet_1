@@ -8,30 +8,46 @@
     <title>PWA Sample</title>
     <script src="app.js"></script>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
-      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
-      notifyButton: {
-        enable: true,
-      },
-    });
-  });
-</script>
-
+    <script>
+      window.OneSignalDeferred = window.OneSignalDeferred || [];
+      OneSignalDeferred.push(function(OneSignal) {
+        OneSignal.init({
+          appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
+          safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
+          notifyButton: {
+            enable: true,
+          },
+        });
+      });
+    </script>
 </head>
 <body>
 
-    <div></div>
+    <div>
+        <label for="email">メールアドレス:</label>
+        <input type="email" id="email" name="email" required>
+        <button onclick="subscribeUser()">登録</button>
+    </div>
+
     <input type="button" value="バッジリセット！" onclick="reset();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
 
-
-</script>
-    
     <script>
-                navigator.serviceWorker.register('sw.js');
-    </script>    
+        navigator.serviceWorker.register('sw.js');
+
+        function subscribeUser() {
+            var email = document.getElementById('email').value;
+            if (email) {
+                OneSignal.push(function() {
+                    OneSignal.setEmail(email).then(function() {
+                        console.log('Email set successfully:', email);
+                    }).catch(function(error) {
+                        console.log('Error setting email:', error);
+                    });
+                });
+            } else {
+                alert('メールアドレスを入力してください。');
+            }
+        }
+    </script>
 </body>
 </html>
