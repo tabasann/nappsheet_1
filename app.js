@@ -18,7 +18,6 @@ function clearBadge() {
 
 function omikuji() {
    setBadge(); // バッジを設定
-
 }
 
 function reset() {
@@ -26,13 +25,22 @@ function reset() {
    navigator.serviceWorker.register('sw.js');
 }
 
-// app.js
-
 function reload() {
   window.location.href = "https://tabasann.github.io";
 }
+
 function swjs() {
   navigator.serviceWorker.register('sw.js');
 }
 
+// OneSignalにメールアドレスを登録
+document.getElementById('email-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var email = document.getElementById('email').value;
 
+    OneSignal.setExternalUserId(email).then(function() {
+        console.log('メールアドレスが登録されました:', email);
+    }).catch(function(error) {
+        console.error('メールアドレスの登録に失敗しました:', error);
+    });
+});
