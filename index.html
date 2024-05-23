@@ -23,6 +23,8 @@
         function onesignalogin() {
             var email = document.getElementById('emailInput').value;
             OneSignal.login(email);
+            // 登録完了メッセージを表示
+            document.getElementById('registrationMessage').innerText = "登録完了";
         }
     </script>
 </head>
@@ -31,6 +33,8 @@
         <input type="text" id="emailInput" placeholder="メールアドレスを入力してください">
         <button onclick="onesignalogin()">登録(初回のみ)</button>
     </div>
+    <!-- 登録完了メッセージの表示領域 -->
+    <div id="registrationMessage"></div>
     <input type="button" value="バッジリセット！" onclick="reset();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
     <script>
         navigator.serviceWorker.register('sw.js');
