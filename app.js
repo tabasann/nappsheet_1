@@ -15,22 +15,14 @@ function clearBadge() {
    }
 }
 
-function omikuji() {
-   setBadge(); // バッジを設定
-}
-
 function reset() {
    clearBadge(); // バッジをクリア
    navigator.serviceWorker.register('sw.js');
-   handleSignupOrLogin();
+   //handleSignupOrLogin();
 }
 
 function reload() {
   window.location.href = "https://tabasann.github.io";
-}
-
-function swjs() {
-  navigator.serviceWorker.register('sw.js');
 }
 
   window.addEventListener('load', function() {
