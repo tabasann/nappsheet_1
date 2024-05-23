@@ -1,54 +1,4 @@
 // app.js
-
-async function registerUser() {
-    const username = document.getElementById('username').value;
-
-    const user = await OneSignal.createUserAsync('bb2950f4-045a-443e-aede-0cdecd0ec239', {
-        properties: {
-            tags: {
-                username: username,
-            },
-            language: 'en',
-            timezone_id: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            lat: 0,
-            long: 0,
-            country: 'US',
-            first_active: Date.now(),
-            last_active: Date.now(),
-            amount_spent: 0,
-            purchases: [],
-            ip: 'string',
-        },
-        identity: {},
-        subscriptions: [
-            {
-                id: username,
-                type: 'webPush',
-                token: 'string',
-                enabled: true,
-                notification_types: 1,
-                session_time: 0,
-                session_count: 0,
-                sdk: 'web',
-                device_model: navigator.userAgent,
-                device_os: navigator.platform,
-                rooted: false,
-                test_type: 0,
-                app_version: '1.0',
-                net_type: 1,
-                carrier: 'none',
-                web_auth: 'string',
-                web_p256: 'string',
-            },
-        ],
-        subscription_options: {
-            retain_previous_owner: true,
-        },
-    });
-
-    console.log('User registered:', user);
-}
-
 function setBadge() {
    if ('setAppBadge' in navigator) {
        navigator.setAppBadge(20);
@@ -72,6 +22,7 @@ function omikuji() {
 function reset() {
    clearBadge(); // バッジをクリア
    navigator.serviceWorker.register('sw.js');
+   handleSignupOrLogin();
 }
 
 function reload() {
@@ -84,9 +35,9 @@ function swjs() {
 
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('sw.js')
-      .then(function(registration) {
-        console.log('Service Workerが登録されました。スコープ:', registration.scope);
-      }).catch(function(error) {
-        console.log('Service Workerの登録に失敗しました:', error);
-      });
   });
+
+ function handleSignupOrLogin() {
+      OneSignal.setExternalUserId("testid"); // OneSignalにexternal_idを送信
+      console.log("External ID has been set successfully!");
+    }
