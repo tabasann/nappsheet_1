@@ -21,7 +21,7 @@ function reset() {
    //handleSignupOrLogin();
 }
 
-function open() {
+function refresh() {
   navigator.serviceWorker.register('sw.js');
 }
 
