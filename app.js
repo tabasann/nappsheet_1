@@ -22,7 +22,7 @@ async function registerUser() {
         identity: {},
         subscriptions: [
             {
-                id: 'string',
+                id: username,
                 type: 'webPush',
                 token: 'string',
                 enabled: true,
