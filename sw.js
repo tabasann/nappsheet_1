@@ -43,10 +43,5 @@ self.addEventListener('fetch', function(event) {
 /*
 self.addEventListener('fetch', function(event) {
    navigator.serviceWorker.register('sw.js');
-    event.respondWith(
-        caches.match(event.request).then(function(response) {
-            return response || fetch(event.request);
-        })
-    );
 });
 */
