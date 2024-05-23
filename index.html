@@ -10,7 +10,7 @@
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
       window.OneSignalDeferred = window.OneSignalDeferred || [];
-      OneSignalDeferred.push(function(OneSignal) {
+      OneSignalDeferred.push(async function(OneSignal) {
         OneSignal.init({
           appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
           safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
@@ -19,20 +19,45 @@
           },
         });
 
-        // External User IDを設定する関数
-        function setExternalUserId(userId) {
-          OneSignal.setExternalUserId(userId).then(function(results) {
-            console.log('External user ID set:', results);
-          }).catch(function(err) {
-            console.error('Error setting external user ID:', err);
-          });
+        // ユーザーを作成し、External User IDを設定する関数
+        async function createUserAndSetExternalId(userId) {
+          try {
+            const user = await OneSignal.createUserAsync('bb2950f4-045a-443e-aede-0cdecd0ec239', {
+              id: userId, // ユーザーIDを設定
+              properties: {
+                tags: {
+                  additionalProp1: {},
+                },
+                language: 'en',
+                timezone_id: 'UTC',
+                lat: 0,
+                long: 0,
+                country: 'US',
+                first_active: 0,
+                last_active: 0,
+                amount_spent: 0,
+                purchases: [],
+                ip: '127.0.0.1',
+              },
+              identity: {
+                additionalProp1: {},
+              },
+              subscriptions: [],
+              subscription_options: {
+                retain_previous_owner: true,
+              }
+            });
+            console.log('User created:', user);
+          } catch (err) {
+            console.error('Error creating user:', err);
+          }
         }
 
-        // フォーム送信時にExternal IDを設定
+        // フォーム送信時にユーザーを作成しExternal IDを設定
         document.getElementById('userIdForm').addEventListener('submit', function(event) {
           event.preventDefault();
           var userId = document.getElementById('userIdInput').value;
-          setExternalUserId(userId);
+          createUserAndSetExternalId(userId);
         });
       });
     </script>
@@ -40,7 +65,7 @@
 <body>
     <div>
         <form id="userIdForm">
-            <label for="userIdInput">ユーザーIDを入力してください:</label>
+            <label for="userIdInput">ユーザーIDを入力してくださいい:</label>
             <input type="text" id="userIdInput" name="userIdInput" required>
             <button type="submit">送信</button>
         </form>
