@@ -83,7 +83,7 @@ function swjs() {
 }
 
   window.addEventListener('load', function() {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('sw.js')
       .then(function(registration) {
         console.log('Service Workerが登録されました。スコープ:', registration.scope);
       }).catch(function(error) {
