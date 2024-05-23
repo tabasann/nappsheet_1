@@ -20,6 +20,11 @@
             });
         });
 
+        function showRegistrationForm() {
+            // 入力フォームと登録ボタンを表示
+            document.getElementById('registrationForm').style.display = "block";
+        }
+
         function onesignalogin() {
             var email = document.getElementById('emailInput').value;
             OneSignal.login(email);
@@ -29,13 +34,21 @@
     </script>
 </head>
 <body>
-    <div>
+    <!-- 設定ボタン -->
+    <button onclick="showRegistrationForm()">設定</button>
+
+    <!-- 入力フォームと登録ボタン -->
+    <div id="registrationForm" style="display: none;">
         <input type="text" id="emailInput" placeholder="メールアドレスを入力してください">
         <button onclick="onesignalogin()">登録(初回のみ)</button>
     </div>
+
     <!-- 登録完了メッセージの表示領域 -->
     <div id="registrationMessage"></div>
+
+    <!-- バッジリセットボタン -->
     <input type="button" value="バッジリセット！" onclick="reset();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
+
     <script>
         navigator.serviceWorker.register('sw.js');
     </script>    
