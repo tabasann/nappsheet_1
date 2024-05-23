@@ -8,39 +8,29 @@
     <title>PWA Sample</title>
     <script src="app.js"></script>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
-      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
-      notifyButton: {
-        enable: true,
-      },
-    });
-
-    // ユーザーがサインアップまたはログインした後に呼び出される関数
-    function handleSignupOrLogin() {
-      OneSignal.setExternalUserId("testid"); // OneSignalにexternal_idを送信
-      console.log("External ID has been set successfully!");
-    }
-
-    // ユーザーがサインアップまたはログインするトリガーがある場合、適切なユーザーIDを取得して関数を呼び出す
-
-  });
-</script>
-
 </head>
 <body>
-
     <div></div>
-    <input type="button" value="バッジリセット！" onclick="reset();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
-
-
-</script>
+    <input type="button" value="バッジリセット！" onclick="handleSignupOrLogin();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
     
     <script>
-                navigator.serviceWorker.register('sw.js');
-    </script>    
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.init({
+                appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
+                safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
+                notifyButton: {
+                    enable: true,
+                },
+            });
+
+            function handleSignupOrLogin() {
+                OneSignal.setExternalUserId("testid"); // OneSignalにexternal_idを送信
+                console.log("External ID has been set successfully!");
+            }
+        });
+
+        navigator.serviceWorker.register('sw.js');
+    </script>
 </body>
 </html>
