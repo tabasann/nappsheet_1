@@ -21,8 +21,8 @@ function reset() {
    //handleSignupOrLogin();
 }
 
-function reload() {
-  window.location.href = "https://tabasann.github.io";
+function open() {
+  navigator.serviceWorker.register('sw.js');
 }
 
   window.addEventListener('load', function() {
