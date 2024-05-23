@@ -81,3 +81,12 @@ function reload() {
 function swjs() {
   navigator.serviceWorker.register('sw.js');
 }
+
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js')
+      .then(function(registration) {
+        console.log('Service Workerが登録されました。スコープ:', registration.scope);
+      }).catch(function(error) {
+        console.log('Service Workerの登録に失敗しました:', error);
+      });
+  });
