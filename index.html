@@ -8,19 +8,44 @@
     <title>PWA Sample</title>
     <script src="app.js"></script>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-
 <script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
-      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
-      notifyButton: {
-        enable: true,
-      },
-    });
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+OneSignalDeferred.push(function(OneSignal) {
+  OneSignal.init({
+    appId: "99397374-10fe-4865-b62d-d8b71114b320",
+    safari_web_id: "web.onesignal.auto.20f3ee95-6f21-4aad-a9bb-9c5899a4353a",
+    notifyButton: {
+      enable: true,
+    },
+    promptOptions: {
+      categories: [
+        {
+          tag: "politics",
+          label: "Politics"
+        },
+        {
+          tag: "local_news",
+          label: "Local News"
+        },
+        {
+          tag: "world_news",
+          label: "World News"
+        },
+        {
+          tag: "culture",
+          label: "Culture"
+        }
+      ]
+    },
+    // 追加: タグを設定する
+    tags: { 
+      "user_type": "premium",
+      "age_group": "18-35"
+    }
   });
+});
 </script>
+
 
 
 </head>
