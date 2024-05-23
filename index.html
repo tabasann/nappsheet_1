@@ -45,11 +45,12 @@
 
     <!-- 登録完了メッセージの表示領域 -->
     <div id="registrationMessage"></div>
-
+　　<div></div>
     <!-- バッジリセットボタン -->
-    <input type="button" value="バッジリセット！" onclick="reset();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
- 　　<!-- バッジリセットボタン -->
-    <input type="button" value="バッジリセット！" onclick="reset();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
+    <input type="button" value="バッジリセット" onclick="reset();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
+    <div></div>
+ 　　<!-- オープンボタン -->
+    <input type="button" value="アプリオープン(アプリを開いたら毎回押してください)" onclick="open();" id="openBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
     <script>
         navigator.serviceWorker.register('sw.js');
     </script>    
