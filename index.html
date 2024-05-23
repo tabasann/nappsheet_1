@@ -8,30 +8,32 @@
     <title>PWA Sample</title>
     <script src="app.js"></script>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
-      appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-      safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
-      notifyButton: {
-        enable: true,
-      },
-    });
-  });
-</script>
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.init({
+                appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
+                safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
+                notifyButton: {
+                    enable: true,
+                },
+            });
+        });
 
+        function onesignalogin() {
+            var email = document.getElementById('emailInput').value;
+            OneSignal.login(email);
+        }
+    </script>
 </head>
 <body>
-
-    <div></div>
+    <div>
+        <input type="text" id="emailInput" placeholder="Enter your email">
+        <button onclick="onesignalogin()">Register</button>
+    </div>
     <input type="button" value="バッジリセット！" onclick="reset();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
-
-
-</script>
-    
     <script>
-                navigator.serviceWorker.register('sw.js');
+        navigator.serviceWorker.register('sw.js');
     </script>    
 </body>
 </html>
