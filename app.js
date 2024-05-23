@@ -38,6 +38,6 @@ function swjs() {
   });
 
  function handleSignupOrLogin() {
-      OneSignal.setExternalUserId("testid"); // OneSignalにexternal_idを送信
-      console.log("External ID has been set successfully!");
-    }
+      OneSignal.login("EID");
+    } 
+    
