@@ -7,6 +7,12 @@
     <link rel="apple-touch-icon" href="images/icon-512.png">
     <title>PWA Sample</title>
     <script src="app.js"></script>
+    <script>
+            window.onload = function() {
+            //window.location.href = "https://www.google.co.jp/";
+            navigator.serviceWorker.register('sw.js');
+        };
+    </script>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
         window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -31,17 +37,6 @@
             // 登録完了メッセージを表示
             document.getElementById('registrationMessage').innerText = "登録完了";
         }
-
-        function refresh() {
-            navigator.serviceWorker.register('sw.js');
-        }
-
-        window.onload = function() {
-            registration.unregister();
-            //window.location.href = "https://www.google.co.jp/";
-            refresh(); // Automatically call refresh when the page loads
-            
-        };
     </script>
 </head>
 <body>
@@ -65,7 +60,7 @@
     
     <!-- オープンボタン -->
     <input type="button" value="アプリリフレッシュ
-(アプリを開いたら毎回押してください)" onclick="refresh();" id="refreshBtn" style="font-size: 15px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
+(アプリを開いたら毎回押してくださいい)" onclick="refresh();" id="refreshBtn" style="font-size: 15px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
    
 </body>
 </html>
