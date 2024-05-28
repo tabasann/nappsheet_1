@@ -22,7 +22,6 @@ function reset() {
 }
 
 function refresh() {
-   registration.unregister();
   navigator.serviceWorker.register('sw.js');
 }
 
