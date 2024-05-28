@@ -39,6 +39,9 @@
         window.onload = function() {
             refresh(); // Automatically call refresh when the page loads
         };
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('sw.js'); // サービスワーカーの登録
+        });
     </script>
 </head>
 <body>
