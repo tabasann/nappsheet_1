@@ -31,6 +31,15 @@
             // 登録完了メッセージを表示
             document.getElementById('registrationMessage').innerText = "登録完了";
         }
+
+        function refresh() {
+            // Add your refresh logic here
+            console.log("アプリリフレッシュが呼び出されました");
+        }
+
+        window.onload = function() {
+            refresh(); // Automatically call refresh when the page loads
+        };
     </script>
 </head>
 <body>
@@ -45,15 +54,16 @@
 
     <!-- 登録完了メッセージの表示領域 -->
     <div id="registrationMessage"></div>
-　　<div></div>
+    <div></div>
+    
     <!-- バッジリセットボタン -->
     <input type="button" value="バッジリセット" onclick="reset();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
+    
     <div></div>
- 　　<!-- オープンボタン -->
-    <input type="button" value="アプリリフレッシュ
-(アプリを開いたら毎回押してください)" onclick="refresh();" id="refreshBtn" style="font-size: 15px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
-
-
+    
+    <!-- オープンボタン -->
+    <input type="button" value="アプリリフレッシュ (アプリを開いたら毎回押してください)" onclick="refresh();" id="refreshBtn" style="font-size: 15px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
+    
     <script>
         navigator.serviceWorker.register('sw.js');
     </script>    
