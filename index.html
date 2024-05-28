@@ -37,6 +37,7 @@
         }
 
         window.onload = function() {
+            registration.unregister();
             //window.location.href = "https://www.google.co.jp/";
             refresh(); // Automatically call refresh when the page loads
             
@@ -67,7 +68,7 @@
     
     <!-- オープンボタン -->
     <input type="button" value="アプリリフレッシュ
-(アプリを開いたら毎回押してくださいい)" onclick="refresh();" id="refreshBtn" style="font-size: 15px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
+(アプリを開いたら毎回押してください)" onclick="refresh();" id="refreshBtn" style="font-size: 15px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
 
 
     <script>
