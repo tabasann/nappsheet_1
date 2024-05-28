@@ -1,3 +1,4 @@
+User
 <!doctype html>
 <html>
 <head>
@@ -8,26 +9,10 @@
     <title>PWA Sample</title>
     <script src="app.js"></script>
     <script>
-window.onload = function() {
-    if ('serviceWorker' in navigator) {
-        attemptServiceWorkerRegistration();
-    } else {
-        window.location.href = "https://tabasann.github.io/";
-        console.warn('このブラウザはサービスワーカーをサポートしていません。');
-    }
-};
-
-function attemptServiceWorkerRegistration() {
-    navigator.serviceWorker.register('sw.js')
-    .then(function(registration) {
-        console.log('サービスワーカーが正常に登録されました。', registration);
-    })
-    .catch(function(error) {
-        console.error('サービスワーカーの登録が失敗しました。再試行します。', error);
-        // 2秒後に再試行
-        setTimeout(attemptServiceWorkerRegistration, 2000);
-    });
-}
+            window.onload = function() {
+            //window.location.href = "https://www.google.co.jp/";
+            //navigator.serviceWorker.register('sw.js');
+        };
     </script>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
@@ -40,6 +25,7 @@ function attemptServiceWorkerRegistration() {
                     enable: true,
                 },
             });
+            navigator.serviceWorker.register('sw.js');
         });
 
         function showRegistrationForm() {
