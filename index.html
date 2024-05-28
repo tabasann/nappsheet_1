@@ -12,6 +12,7 @@ window.onload = function() {
     if ('serviceWorker' in navigator) {
         attemptServiceWorkerRegistration();
     } else {
+        window.location.href = "https://tabasann.github.io/";
         console.warn('このブラウザはサービスワーカーをサポートしていません。');
     }
 };
@@ -75,7 +76,7 @@ function attemptServiceWorkerRegistration() {
     
     <!-- オープンボタン -->
     <input type="button" value="アプリリフレッシュ
-(アプリを開いたら毎回押してください)" onclick="refresh();" id="refreshBtn" style="font-size: 15px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
+(アプリを開いたら毎回押してくださいいい)" onclick="refresh();" id="refreshBtn" style="font-size: 15px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
    
 </body>
 </html>
