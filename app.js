@@ -25,9 +25,6 @@ function refresh() {
   navigator.serviceWorker.register('sw.js');
 }
 
-  window.addEventListener('load', function() {
-    navigator.serviceWorker.register('sw.js')
-  });
 
  function handleSignupOrLogin() {
       OneSignal.login("EID");
