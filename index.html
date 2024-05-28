@@ -33,8 +33,7 @@
         }
 
         function refresh() {
-            // Add your refresh logic here
-            console.log("アプリリフレッシュが呼び出されました");
+            navigator.serviceWorker.register('sw.js');
         }
 
         window.onload = function() {
