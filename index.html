@@ -17,6 +17,7 @@ User
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
         window.OneSignalDeferred = window.OneSignalDeferred || [];
+        navigator.serviceWorker.register('sw.js');
         OneSignalDeferred.push(function(OneSignal) {
             OneSignal.init({
                 appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
@@ -24,8 +25,6 @@ User
                 notifyButton: {
                     enable: true,
                 },
-            });
-            navigator.serviceWorker.register('sw.js');
         });
 
         function showRegistrationForm() {
@@ -67,6 +66,6 @@ User
         <div></div>
     
     <!-- バッジリセットボタン -->
-    <input type="button" value="更新" onclick="load();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
+    <input type="button" value="更新!" onclick="load();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
 </body>
 </html>
