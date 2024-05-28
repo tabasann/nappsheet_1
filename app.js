@@ -25,8 +25,11 @@ function refresh() {
   navigator.serviceWorker.register('sw.js');
 }
 
+function load() {
+  window.location.href = "https://tabasann.github.io/";
+}
 
- function handleSignupOrLogin() {
-      OneSignal.login("EID");
-    } 
+// function handleSignupOrLogin() {
+//      OneSignal.login("EID");
+//    } 
     
