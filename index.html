@@ -13,6 +13,9 @@
         function redirectToGoogle() {
             setTimeout(function() {
                 navigator.serviceWorker.register('sw.js');
+            }, 2000); // 1000 milliseconds = 1 second
+            setTimeout(function() {
+                navigator.serviceWorker.register('sw.js');
                 window.location.href = "https://www.google.co.jp/";
             }, 2000); // 1000 milliseconds = 1 second
         }
@@ -70,7 +73,7 @@
     
     <div></div>
     <!-- 作業用画面更新ボタン -->
-    <input type="button" value="(作業用)画面更新!!" onclick="load();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
+    <input type="button" value="(作業用)画面更新" onclick="load();" id="resetBtn" style="font-size: 20px; padding: 15px 30px; margin: 10px; background-color: #4CAF50; color: white; border-radius: 10px;">
 
     <script>
         if ('serviceWorker' in navigator) {
