@@ -5,20 +5,15 @@ self.addEventListener('push', function(event) {
     // ブラウザの通知を作成
     const options = {
         body: pushData.message, // プッシュ通知のメッセージを表示
-        icon: 'icon.png' // 通知に表示するアイコン
+        icon: 'icon1.png' // 通知に表示するアイコン
     };
 
     // ブラウザの通知を表示
     event.waitUntil(
         self.registration.showNotification(pushData.title, options)
     );
-
     navigator.setAppBadge(pushData.title);
 });
-
-
-
-
 
 var CACHE_NAME = 'pwa-sample-caches';
 var urlsToCache = [
@@ -40,8 +35,3 @@ self.addEventListener('fetch', function(event) {
     );
 });
 
-/*
-self.addEventListener('fetch', function(event) {
-   navigator.serviceWorker.register('sw.js');
-});
-*/
