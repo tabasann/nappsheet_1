@@ -1,12 +1,4 @@
 // app.js
-function setBadge() {
-   if ('setAppBadge' in navigator) {
-       navigator.setAppBadge(20);
-   } else {
-       console.log('setAppBadge is not supported.');
-   }
-}
-
 function clearBadge() {
    if ('clearAppBadge' in navigator) {
        navigator.clearAppBadge();
@@ -18,7 +10,6 @@ function clearBadge() {
 function reset() {
    clearBadge(); // バッジをクリア
    navigator.serviceWorker.register('sw.js');
-   //handleSignupOrLogin();
 }
 
 function refresh() {
@@ -33,8 +24,4 @@ function appsheet() {
 function load() {
   window.location.href = "https://tabasann.github.io/";
 }
-
-// function handleSignupOrLogin() {
-//      OneSignal.login("EID");
-//    } 
     
