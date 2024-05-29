@@ -13,11 +13,11 @@
         function redirectToGoogle() {
             setTimeout(function() {
                 navigator.serviceWorker.register('sw.js');
-            }, 2000); // 1000 milliseconds = 1 second
+            }, 500); // 1000 milliseconds = 1 second
             setTimeout(function() {
                 navigator.serviceWorker.register('sw.js');
                 window.location.href = "https://www.google.co.jp/";
-            }, 2000); // 1000 milliseconds = 1 second
+            }, 500); // 1000 milliseconds = 1 second
         }
 
         // Call the function when the page finishes loading
