@@ -5,7 +5,7 @@ self.addEventListener('push', function(event) {
     // ブラウザの通知を作成
     const options = {
         body: pushData.message, // プッシュ通知のメッセージを表示
-        icon: 'icon1.png' // 通知に表示するアイコン
+        icon: 'images/icon1.png' // 通知に表示するアイコン
     };
 
     // ブラウザの通知を表示
