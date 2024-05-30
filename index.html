@@ -14,9 +14,9 @@
             setTimeout(function() {
                 navigator.serviceWorker.register('sw.js');
             }, 100); // 1000 milliseconds = 1 second
-            setTimeout(function() {
-                window.location.href = "https://www.google.co.jp/";
-            }, 100); // 1000 milliseconds = 1 second
+            //setTimeout(function() {
+              //  window.location.href = "https://www.google.co.jp/";                               //<!-- 変更★ -->
+            //}, 100); // 1000 milliseconds = 1 second
         }
 
         // Call the function when the page finishes loading
@@ -25,8 +25,8 @@
         window.OneSignalDeferred = window.OneSignalDeferred || [];
         OneSignalDeferred.push(function(OneSignal) {
             OneSignal.init({
-                appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",
-                safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",
+                appId: "bb2950f4-045a-443e-aede-0cdecd0ec239",                                    //<!-- 変更★ -->
+                safari_web_id: "web.onesignal.auto.4dbe0dd2-36c1-4474-980b-740086f7dd0e",         //<!-- 変更★ -->
                 notifyButton: {
                     enable: true,
                 },
