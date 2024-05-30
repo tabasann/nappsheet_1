@@ -17,8 +17,8 @@ self.addEventListener('push', function(event) {
 
 var CACHE_NAME = 'pwa-sample-caches';
 var urlsToCache = [
-    'tabasann.github.io',
-    'tabasann.github.io/app.js',
+    'tabasann.github.io',                    //<!-- 変更★ -->
+    'tabasann.github.io/app.js',             //<!-- 変更★ -->
 ];
 
 self.addEventListener('install', function(event) {
