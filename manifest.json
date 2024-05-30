@@ -1,6 +1,6 @@
 {
-    "short_name": "PWAテスト",                               //<!-- 変更★ -->
-    "name": "PWAテストアプリケーション",                      //<!-- 変更★ -->
+    "short_name": "PWAテスト",
+    "name": "PWAテストアプリケーション",
     "display": "standalone",
     "start_url": "index.html",
     "background_color": "#ffffff",
